@@ -1,14 +1,11 @@
-package view;
+package entity.mobile;
 
-
-import entity.mobile.Player;
-import entity.mobile.Direction;
 
 import javax.swing.*;
 import java.awt.*;
 
 
-public class ViewPanel extends JPanel implements Runnable {
+public class Deplacement extends JPanel implements Runnable {
 	final int originalTilesSize = 16; // résoulition de l'image 16x16
 	final int scale = 3;
 	public final int tileSize = originalTilesSize * scale; // 48x48 tiles
@@ -20,13 +17,14 @@ public class ViewPanel extends JPanel implements Runnable {
 	Thread gameThread;
 	// FPS
 	double FPS = 60.0;
+	Player player = new Player(this,keyH);
 
 	// les positions du joueurs
 	int playerX = 100;
 	int playerY = 100;
 	int playerSpeed = 4;
 
-	public ViewPanel() {
+	public Deplacement() {
 
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.BLACK);
@@ -35,8 +33,7 @@ public class ViewPanel extends JPanel implements Runnable {
 		this.addKeyListener(keyH);
 
 	}
-
-	public void startGameThread(){
+	public void 	startGameThread(){
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
@@ -89,5 +86,6 @@ public class ViewPanel extends JPanel implements Runnable {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		g2.dispose();
+		player.draw(g2);
 	}
 }

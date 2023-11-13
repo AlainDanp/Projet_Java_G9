@@ -4,10 +4,10 @@
  */
 package main;
 
-import contract.ControllerOrder;
-import controller.Controller;
-import model.Model;
-import view.View;
+import entity.mobile.Deplacement;
+import view.ViewFrame;
+import view.ViewPanel;
+
 
 /**
  * The Class Main.
@@ -23,12 +23,9 @@ public abstract class Main {
      *            the arguments
      */
     public static void main(final String[] args) {
-        final Model model = new Model();
-        final View view = new View(model);
-        final Controller controller = new Controller(view, model);
-        view.setController(controller);
-
-        controller.control();
-        controller.orderPerform(ControllerOrder.English);
+        ViewFrame viewFrame = new ViewFrame();
+        Deplacement deplacement = new Deplacement();
+        viewFrame.showWindow();
+        deplacement.startGameThread();
     }
 }
